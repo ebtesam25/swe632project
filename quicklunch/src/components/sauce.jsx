@@ -20,9 +20,48 @@ import { Link } from 'react-router-dom';
     
 
 export default function Sauce({food}){
-    const [foodOps, setFoodOps] = useState([
-        {"name": "Marinara", "img": Classic, "description": "Embrace tradition with our Classic Hand-Tossed crust. It strikes a delightful balance in thickness, offering a texture that's crispy on the outside yet soft inside. Perfect for those who value classic flavors in every bite", "glutenFree": false, "keto": false, "new":false}, {"name": "Alfredo", "img": Thin, "description": "Our Thin & Crispy crust is a haven for crunch enthusiasts. Rolled to fine thinness, it delivers a satisfyingly crisp texture, making it ideal for those who love a lighter base to highlight their toppings.", "glutenFree": false, "keto": false, "new":false}, {"name": "Deep Dish", "img": Deepdish, "description": "Dive into the richness of our Deep Dish crust. Its thick, buttery texture is akin to biting into a cloud of savory delight. A fantastic choice for anyone seeking a more filling and robust pizza.", "glutenFree": false, "keto": false, "new":false},
-        {"name": "Whole Wheat", "img": Wheat, "description": "Choose a healthier route with our Whole Wheat crust. Made from 100% whole grain wheat flour, it offers a nuttier flavor and a denser texture, catering to health-conscious pizza aficionados.", "glutenFree": false, "keto": false, "new":false}, {"name": "Gluten Free", "img": Gluten, "description": "Our Gluten-Free crust ensures everyone gets to relish pizza bliss. Crafted from a fine blend of gluten-free flours, it's light, tasty, and perfect for those with gluten sensitivities.", "glutenFree": true, "keto": false, "new":false}, {"name": "Cauliflower Crust", "img": Cauliflower, "description": "Indulge in the unique and wholesome goodness of our Cauliflower Crust. A delightful alternative, it's lower in carbs and packed with nutrients. Crispy, light, and delicious, this crust caters to both health enthusiasts and those looking for a new flavor experience.", "glutenFree": true, "keto": true, "new":false}
+    const [sauceOps, setSauceOps] = useState([
+        {
+            "name": "Marinara",
+            "img": "Marinara",
+            "description": "Our Marinara sauce is a classic, rich tomato-based sauce seasoned with garlic, oregano, and fresh basil. It's the perfect choice for those who love traditional Italian flavors, offering a simple yet robust taste that complements any pizza.",
+            "glutenFree": true,
+            "keto": false,
+            "new": false
+          },
+          {
+            "name": "Alfredo",
+            "img": "Alfredo",
+            "description": "Indulge in the creamy richness of our Alfredo sauce. Made with heavy cream, butter, and parmesan cheese, this sauce offers a luxuriously smooth texture and decadent flavor. Ideal for adding a touch of elegance to your pizza.",
+            "glutenFree": true,
+            "keto": true,
+            "new": false
+          },
+          {
+            "name": "Pesto",
+            "img": "Pesto",
+            "description": "Enjoy the fresh, aromatic flavors of our Pesto sauce. A blend of basil, garlic, pine nuts, olive oil, and Parmesan cheese, it's a vibrant and herbaceous choice that brings a burst of Italian countryside to your pizza.",
+            "glutenFree": true,
+            "keto": true,
+            "new": false
+          },
+          {
+            "name": "BBQ",
+            "img": "BBQ",
+            "description": "Savor the smoky sweetness of our BBQ sauce. With a perfect balance of tangy and sweet, this sauce is a great way to add a bold, American twist to your pizza. Ideal for those who enjoy a bit of zest and depth in their toppings.",
+            "glutenFree": true,
+            "keto": false,
+            "new": false
+          },
+          {
+            "name": "Buffalo",
+            "img": "Buffalo",
+            "description": "Experience the spicy kick of our Buffalo sauce. This sauce combines the tangy flavor of vinegar-based cayenne pepper sauce with a buttery finish, perfect for those who like their pizza with a bit of heat.",
+            "glutenFree": true,
+            "keto": false,
+            "new": false
+          }
+          
     ]);
 
 
@@ -61,7 +100,7 @@ export default function Sauce({food}){
             <h1 className='font-bold text-xl mb-5'>Sauce</h1>
            <p className='text-xl mb-10'>Choose your sauce. We offer a variety of options to suit your dietary needs and preferences.</p>
            <div className='grid grid-rows-2 grid-flow-col gap-4'>
-           {foodOps.map(item => (
+           {sauceOps.map(item => (
             <div className={`card h-[32rem] bg-base-100 shadow-xl h-96 ${selectedFood === item ? 'selected' : ''}`}>
             <figure className='h-36'><img src={item.img} className='object-cover' alt={item.name} /></figure>
             <div className="card-body">
@@ -80,15 +119,15 @@ export default function Sauce({food}){
             </div>
         </div>
         </div>
-        <div className='bg-neutral-200 flex flex-col basis-1/3'>
+        <div className='bg-neutral-200 flex flex-col basis-1/3 pt-10'>
             <h1 className='text-2xl font-bold pl-10 pr-10 pb-5'>Order Selection</h1>
             {pizzaOrder && (
-                <p className="text-lg p-10">Crust: {pizzaOrder[0].crust}</p>
+                <p className="text-lg px-10 py-1">Crust: {pizzaOrder[0].crust}</p>
             )}
             {pizzaOrder && (
-                <p className="text-lg p-10">Sauce: {pizzaOrder[0].sauce}</p>
+                <p className="text-lg px-10 py-1">Sauce: {pizzaOrder[0].sauce}</p>
             )}
-            <button className='btn btn-primary w-1/3 self-center'>Next</button>
+            <button className='btn btn-primary w-1/3 self-center mt-5'><Link to='/toppings'>Next</Link></button>
         </div>
         </div>
     )

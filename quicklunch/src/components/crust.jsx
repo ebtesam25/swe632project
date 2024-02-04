@@ -78,15 +78,12 @@ export default function Crust(){
             </div>
         </div>
         </div>
-        <div className='bg-neutral-200 flex flex-col basis-1/3'>
-            <h1 className='text-2xl font-bold pl-10 pr-10 pb-5'>Order Selection</h1>
+        <div className='bg-neutral-200 flex flex-col basis-1/3 pt-10'>
+        <h1 className='text-2xl font-bold pl-10 pr-10 pb-5'>Order Selection</h1>
             {pizzaOrder && (
-                <p className="text-lg p-10">Crust: {pizzaOrder[0].crust}</p>
+                <p className="text-lg px-10 py-1">Crust: {pizzaOrder[0].crust}</p>
             )}
-            {pizzaOrder && (
-                <p className="text-lg p-10">Sauce: {pizzaOrder[0].sauce}</p>
-            )}
-            <button className='btn btn-primary w-1/3 self-center'><Link to="/sauce">Next</Link></button>
+            <button className='btn btn-primary w-1/3 self-center mt-5'><Link to="/sauce">Next</Link></button>
         </div>
         </div>
     )

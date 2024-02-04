@@ -6,6 +6,8 @@ import FoodOptions from './components/foodOptions';
 import NavBar from './components/NavBar';
 import Crust from './components/crust';
 import Sauce from './components/sauce';
+import Toppings from './components/toppings';
+import Additional from './components/additional';
 
 export default function App() {
 
@@ -18,6 +20,9 @@ export default function App() {
         <Route exact path="/start" element={<FoodOptions />} />
         <Route exact path="/crust" element={<Crust />} />
         <Route exact path="/sauce" element={<Sauce />} />
+        <Route exact path="/toppings" element={<Toppings />} />
+        <Route exact path="/additional" element={<Additional />} />
+
     </Routes>
     </BrowserRouter>
     </div>

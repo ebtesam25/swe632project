@@ -6,7 +6,7 @@ const initialState = {
 export const orderSlice = createSlice({
   name: 'order',
   initialState: {
-    pizzas: [{crust:'',sauce:'',toppings:[]}], // Array to hold multiple pizza orders
+    pizzas: [{crust:'',sauce:'',toppings:[],drizzles:[]}], // Array to hold multiple pizza orders
   },
   reducers: {
     addPizza: (state, action) => {
@@ -35,6 +35,16 @@ export const orderSlice = createSlice({
         topping => topping.name !== toppingName
       );
     },
+    addDrizzle: (state, action) => {
+      const { pizzaIndex, drizzle } = action.payload;
+      state.pizzas[pizzaIndex].drizzles.push(drizzle);
+    },
+    removeDrizzle: (state, action) => {
+      const { pizzaIndex, drizzleName } = action.payload;
+      state.pizzas[pizzaIndex].drizzles = state.pizzas[pizzaIndex].drizzles.filter(
+        drizzle => drizzle.name !== drizzleName
+      );
+    },
     updateToppingQuantity: (state, action) => {
       const { pizzaIndex, toppingName, quantity } = action.payload;
       const topping = state.pizzas[pizzaIndex].toppings.find(
@@ -54,6 +64,8 @@ export const {
   setSauce,
   addTopping,
   removeTopping,
+  addDrizzle,
+  removeDrizzle,
   updateToppingQuantity,
 } = orderSlice.actions;
 
