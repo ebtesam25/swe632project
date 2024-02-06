@@ -8,6 +8,9 @@ import Crust from './components/crust';
 import Sauce from './components/sauce';
 import Toppings from './components/toppings';
 import Additional from './components/additional';
+import OrderComplete from './components/OrderComplete';
+import UserProfile from './components/UserProfile';
+
 
 export default function App() {
 
@@ -22,6 +25,8 @@ export default function App() {
         <Route exact path="/sauce" element={<Sauce />} />
         <Route exact path="/toppings" element={<Toppings />} />
         <Route exact path="/additional" element={<Additional />} />
+        <Route exact path="/order-complete" element={<OrderComplete />} />
+        <Route exact path="/user-profile" element={<UserProfile />} />
 
     </Routes>
     </BrowserRouter>
