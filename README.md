@@ -1,4 +1,4 @@
-# swe632project
+# Quicklunch
 
 ## Installation
 
