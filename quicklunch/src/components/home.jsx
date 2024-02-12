@@ -1,9 +1,11 @@
 import { Link } from 'react-router-dom';
 import Bg from '../assets/bg.jpg'
 import Logo from '../assets/logo5.png'
+import NavBar from './NavBar';
 export default function Home(){
     return(
         <div>
+          <NavBar/>
 
 <div className="hero min-h-screen bg-base-200 p-20">
   <div className="hero-content flex-col lg:flex-row-reverse">

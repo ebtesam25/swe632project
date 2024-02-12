@@ -1,9 +1,9 @@
-import Classic from '../assets/classic.jpg';
-import Thin from '../assets/thin.jpg';
-import Cauliflower from '../assets/cauliflower.jpg';
-import Deepdish from '../assets/deepdish.jpg';
-import Gluten from '../assets/glutenfree.jpg';
-import Wheat from '../assets/wheat.jpg';
+import GarlicParamesanDrizzle from '../assets/GarlicParmesanDrizzle.jpg';
+import Balsamic from '../assets/BalsamicGlaze.jpg';
+import BBQSauceDrizzle from '../assets/BBQSauceDrizzle.jpg';
+import HotBuffaloSauce from '../assets/HotBuffaloSauce.jpg';
+import RanchDressingDrizzle from '../assets/RanchDressingDrizzle.jpg';
+
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import {
@@ -17,10 +17,12 @@ import {
 
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import OrderComplete from './OrderComplete';
 
     
 
 export default function Additional({food}){
+    const [isOrderComplete, setIsOrderComplete] = useState(false);
     const [quantity, setQuantity] = useState(1); // Initializes quantity with 1
 
     const increaseQuantity = () => {
@@ -44,7 +46,7 @@ export default function Additional({food}){
     const [toppingsOps, settoppingsOps] = useState([
         {
           "name": "Garlic Parmesan Drizzle",
-          "img": "GarlicParmesanDrizzle",
+          "img": GarlicParamesanDrizzle,
           "description": "A creamy and savory finish that's irresistible to garlic lovers. Perfect for adding a rich, flavorful layer to your pizza.",
           "glutenFree": true,
           "keto": false,
@@ -52,7 +54,7 @@ export default function Additional({food}){
         },
         {
           "name": "Balsamic Glaze",
-          "img": "BalsamicGlaze",
+          "img": Balsamic,
           "description": "A sweet and tangy balsamic reduction for a gourmet touch. Adds a sophisticated flair to any pizza with its unique flavor.",
           "glutenFree": true,
           "keto": false,
@@ -60,7 +62,7 @@ export default function Additional({food}){
         },
         {
           "name": "BBQ Sauce Drizzle",
-          "img": "BBQSauceDrizzle",
+          "img": BBQSauceDrizzle,
           "description": "Smoky and sweet, ideal for a bold flavor kick. This drizzle adds a deliciously tangy twist to your favorite pizza.",
           "glutenFree": true,
           "keto": false,
@@ -68,7 +70,7 @@ export default function Additional({food}){
         },
         {
           "name": "Hot Buffalo Sauce",
-          "img": "HotBuffaloSauce",
+          "img":HotBuffaloSauce,
           "description": "Spice things up with a fiery buffalo drizzle. Perfect for adding a spicy kick to any pizza, this sauce is for those who love heat.",
           "glutenFree": true,
           "keto": false,
@@ -76,7 +78,7 @@ export default function Additional({food}){
         },
         {
           "name": "Ranch Dressing Drizzle",
-          "img": "RanchDressingDrizzle",
+          "img": RanchDressingDrizzle,
           "description": "Cool and creamy, perfect for dipping or drizzling. Adds a smooth, tangy layer to your pizza that complements any topping.",
           "glutenFree": true,
           "keto": true,
@@ -147,7 +149,7 @@ export default function Additional({food}){
             <li className="step step-primary">Crust</li>
             <li className="step step-primary">Sauce</li>
             <li className="step step-primary">Toppings</li>
-            <li className="step">Additional</li>
+            <li className="step step-primary">Additional</li>
             </ul>
             <h1 className='font-bold text-xl mb-5'>Drizzle</h1>
            <p className='text-xl mb-10'>Choose upto 4 toppings. We offer a variety of options to suit your dietary needs and preferences.</p>
@@ -172,15 +174,16 @@ export default function Additional({food}){
                 <input className='input input-bordered w-full max-w-xs' type="number" value={quantity} readOnly />
                 <button className='btn btn-primary rounded-full text-2xl text-white' onClick={increaseQuantity}>+</button>
                 </div> */}
-                <button className="btn btn-primary" onClick={() => handleAddDrizzle(0,item.name)}>Select</button>
+                <button className={isOrderComplete?"btn disabled":"btn btn-primary"} onClick={() => handleAddDrizzle(0,item.name)}>Select</button>
             </div>
             </div>))}
             </div>
             </div>
         </div>
         </div>
-        <div className='bg-neutral-200 flex flex-col basis-1/3 pt-10'>
-            <h1 className='text-2xl font-bold pl-10 pr-10 pb-5'>Order Selection</h1>
+        <div className='bg-neutral-200 flex flex-col basis-1/3 pt-10 content-center'>
+            
+            <h1 className='text-2xl font-bold pl-10 pr-10 pb-10'>Order Selection</h1>
             {pizzaOrder && (
                 <p className="text-lg px-10 py-1">Crust: {pizzaOrder[0].crust}</p>
             )}
@@ -191,9 +194,12 @@ export default function Additional({food}){
                 <p className="text-lg px-10 py-1">Toppings: {pizzaOrder[0].toppings.toString()}</p>
             )}
             {pizzaOrder && (
-                <p className="text-lg px-10 py-1">Drizzle: {pizzaOrder[0].drizzles.toString()}</p>
+                <p className="text-lg px-10 pt-1 pb-10">Drizzle: {pizzaOrder[0].drizzles.toString()}</p>
             )}
-            <button className='btn btn-primary w-1/3 self-center mt-5'>Next</button>
+            {!isOrderComplete &&<div>
+            <button onClick={()=>setIsOrderComplete(true)} className='btn btn-primary w-2/3 self-center mt-5 justify-center mx-10'>Place Order</button>
+            </div>}
+              {isOrderComplete && <OrderComplete/>}
         </div>
         </div>
     )

@@ -1,9 +1,9 @@
-import Classic from '../assets/classic.jpg';
-import Thin from '../assets/thin.jpg';
-import Cauliflower from '../assets/cauliflower.jpg';
-import Deepdish from '../assets/deepdish.jpg';
-import Gluten from '../assets/glutenfree.jpg';
-import Wheat from '../assets/wheat.jpg';
+import Marinara from '../assets/Marinara.jpg';
+import Alfredo from '../assets/Alfredo.jpg';
+import Pesto from '../assets/Pesto.jpg';
+import BBQ from '../assets/BBQ.jpg';
+import Buffalo from '../assets/Buffalo.jpg';
+
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import {
@@ -23,7 +23,7 @@ export default function Sauce({food}){
     const [sauceOps, setSauceOps] = useState([
         {
             "name": "Marinara",
-            "img": "Marinara",
+            "img": Marinara,
             "description": "Our Marinara sauce is a classic, rich tomato-based sauce seasoned with garlic, oregano, and fresh basil. It's the perfect choice for those who love traditional Italian flavors, offering a simple yet robust taste that complements any pizza.",
             "glutenFree": true,
             "keto": false,
@@ -31,7 +31,7 @@ export default function Sauce({food}){
           },
           {
             "name": "Alfredo",
-            "img": "Alfredo",
+            "img": Alfredo,
             "description": "Indulge in the creamy richness of our Alfredo sauce. Made with heavy cream, butter, and parmesan cheese, this sauce offers a luxuriously smooth texture and decadent flavor. Ideal for adding a touch of elegance to your pizza.",
             "glutenFree": true,
             "keto": true,
@@ -39,7 +39,7 @@ export default function Sauce({food}){
           },
           {
             "name": "Pesto",
-            "img": "Pesto",
+            "img": Pesto,
             "description": "Enjoy the fresh, aromatic flavors of our Pesto sauce. A blend of basil, garlic, pine nuts, olive oil, and Parmesan cheese, it's a vibrant and herbaceous choice that brings a burst of Italian countryside to your pizza.",
             "glutenFree": true,
             "keto": true,
@@ -47,7 +47,7 @@ export default function Sauce({food}){
           },
           {
             "name": "BBQ",
-            "img": "BBQ",
+            "img": BBQ,
             "description": "Savor the smoky sweetness of our BBQ sauce. With a perfect balance of tangy and sweet, this sauce is a great way to add a bold, American twist to your pizza. Ideal for those who enjoy a bit of zest and depth in their toppings.",
             "glutenFree": true,
             "keto": false,
@@ -55,7 +55,7 @@ export default function Sauce({food}){
           },
           {
             "name": "Buffalo",
-            "img": "Buffalo",
+            "img": Buffalo,
             "description": "Experience the spicy kick of our Buffalo sauce. This sauce combines the tangy flavor of vinegar-based cayenne pepper sauce with a buttery finish, perfect for those who like their pizza with a bit of heat.",
             "glutenFree": true,
             "keto": false,

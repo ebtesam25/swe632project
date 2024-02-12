@@ -16,7 +16,6 @@ export default function App() {
 
   return (
     <div>
-      <NavBar/>
     <BrowserRouter>
     <Routes>
         <Route exact path="/" element={<Home />} />
@@ -25,8 +24,8 @@ export default function App() {
         <Route exact path="/sauce" element={<Sauce />} />
         <Route exact path="/toppings" element={<Toppings />} />
         <Route exact path="/additional" element={<Additional />} />
-        <Route exact path="/order-complete" element={<OrderComplete />} />
-        <Route exact path="/user-profile" element={<UserProfile />} />
+        <Route exact path="/orderComplete" element={<OrderComplete />} />
+        <Route exact path="/userProfile" element={<UserProfile />} />
 
     </Routes>
     </BrowserRouter>

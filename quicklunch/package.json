@@ -1,6 +1,7 @@
 {
   "name": "quicklunch",
   "private": true,
+  "homepage": "https://ebtesam25.github.io/swe632project",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
@@ -12,6 +13,7 @@
   "dependencies": {
     "@reduxjs/toolkit": "^2.1.0",
     "daisyui": "^4.6.0",
+    "gh-pages": "^6.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^9.1.0",
