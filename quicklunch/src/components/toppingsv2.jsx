@@ -295,7 +295,7 @@ export default function ToppingsV2({food}){
             <li className="step">Additional</li>
             </ul>
             <h1 className='font-bold text-xl mb-5'>Toppings</h1>
-           <p className='text-xl mb-10'>Choose upto 4 toppings. We offer a variety of options to suit your dietary needs and preferences.</p>
+           <p className='text-xl mb-10'>Choose up to 4 toppings. We offer a variety of options to suit your dietary needs and preferences.</p>
            
            <div className=''>
            <div className='grid grid-cols-3 grid-flow-rows gap-4'>
