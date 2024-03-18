@@ -330,9 +330,13 @@ export default function ToppingsV2({food}){
                 <p className="text-lg px-10 py-1">Sauce: {pizzaOrder[0].sauce}</p>
             )}
             {pizzaOrder && (
-                <p className="text-lg px-10 py-1">Toppings: {pizzaOrder[0].toppings.toString()}</p>
+                <div>
+                  <p className="text-lg px-10 py-1">Toppings: {pizzaOrder[0].toppings.toString()}</p>
+                  <div className='bg-grey-500'>{pizzaOrder[0].toppings.toString()}</div>
+                </div>
+                
             )}
-            <button className='btn btn-primary w-1/3 self-center mt-5'><Link to="/additional">Next</Link></button>
+            <button className='btn btn-primary w-1/3 self-center mt-5'><Link to="/additionalV2">Next</Link></button>
         </div>
         </div>
     )

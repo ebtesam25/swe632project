@@ -83,7 +83,7 @@ export default function CrustV2(){
             {pizzaOrder && (
                 <p className="text-lg px-10 py-1">Crust: {pizzaOrder[0].crust}</p>
             )}
-            <button className='btn btn-primary w-1/3 self-center mt-5'><Link to="/sauce">Next</Link></button>
+            <button className='btn btn-primary w-1/3 self-center mt-5'><Link to="/sauceV2">Next</Link></button>
         </div>
         </div>
     )

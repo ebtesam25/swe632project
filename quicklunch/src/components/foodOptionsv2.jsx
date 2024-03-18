@@ -30,7 +30,7 @@ export default function FoodOptionsV2(){
                 {item.keto?<div className="badge badge-outline">Keto</div>:null}
                 </div>
                 <p>{item.description}</p>
-                <button className={item.name=="Pizza"?"btn btn-primary":"btn btn-disabled"}><Link to="/crust">Select</Link></button>
+                <button className={item.name=="Pizza"?"btn btn-primary":"btn btn-disabled"}><Link to="/crustV2">Select</Link></button>
             </div>
             </div>))}
             </div>

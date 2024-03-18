@@ -127,7 +127,7 @@ export default function SauceV2({food}){
             {pizzaOrder && (
                 <p className="text-lg px-10 py-1">Sauce: {pizzaOrder[0].sauce}</p>
             )}
-            <button className='btn btn-primary w-1/3 self-center mt-5'><Link to='/toppings'>Next</Link></button>
+            <button className='btn btn-primary w-1/3 self-center mt-5'><Link to='/toppingsV2'>Next</Link></button>
         </div>
         </div>
     )
