@@ -31,9 +31,9 @@ export const orderSlice = createSlice({
     },
     removeTopping: (state, action) => {
       const { pizzaIndex, toppingName } = action.payload;
-      state.pizzas[pizzaIndex].toppings = state.pizzas[pizzaIndex].toppings.filter(
-        topping => topping.name !== toppingName
-      );
+      console.log("Toppings:",state.pizzas[pizzaIndex].toppings)
+      state.pizzas[pizzaIndex].toppings.pop(toppingName)
+      console.log("Toppings:",state.pizzas[pizzaIndex].toppings)
     },
     addDrizzle: (state, action) => {
       const { pizzaIndex, drizzle } = action.payload;
@@ -41,9 +41,7 @@ export const orderSlice = createSlice({
     },
     removeDrizzle: (state, action) => {
       const { pizzaIndex, drizzleName } = action.payload;
-      state.pizzas[pizzaIndex].drizzles = state.pizzas[pizzaIndex].drizzles.filter(
-        drizzle => drizzle.name !== drizzleName
-      );
+      state.pizzas[pizzaIndex].drizzles.pop(drizzleName);
     },
     updateToppingQuantity: (state, action) => {
       const { pizzaIndex, toppingName, quantity } = action.payload;

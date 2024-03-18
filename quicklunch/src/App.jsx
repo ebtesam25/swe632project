@@ -17,6 +17,7 @@ import SauceV2 from './components/saucev2';
 import ToppingsV2 from './components/toppingsv2';
 import OrderCompleteV2 from './components/OrderCompletev2';
 import UserProfileV2 from './components/UserProfilev2';
+import AdditionalV2 from './components/additionalv2';
 
 
 export default function App() {
@@ -38,7 +39,8 @@ export default function App() {
         <Route exact path="/crustv2" element={<CrustV2 />} />
         <Route exact path="/saucev2" element={<SauceV2 />} />
         <Route exact path="/toppingsv2" element={<ToppingsV2 />} />
-        <Route exact path="/additionalv2" element={<Additional />} />
+        <Route exact path="/additional" element={<Additional />} />
+        <Route exact path="/additionalv2" element={<AdditionalV2 />} />
         <Route exact path="/orderCompletev2" element={<OrderCompleteV2 />} />
         <Route exact path="/userProfilev2" element={<UserProfileV2 />} />
 

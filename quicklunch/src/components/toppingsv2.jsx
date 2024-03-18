@@ -24,6 +24,7 @@ import {
   setSauce,
   addTopping,
   updateToppingQuantity,
+  removeTopping,
 } from '../redux/menuSlice';
 
 import React, { useState } from 'react';
@@ -267,12 +268,14 @@ export default function ToppingsV2({food}){
         dispatch(addPizza());
       };
 
-    
-    
-
       const handleAddTopping = (pizzaIndex, topping) => {
         dispatch(addTopping({ pizzaIndex, topping: topping }));
-    };
+      };
+      
+      const handleRemoveTopping = (pizzaIndex, topping) => {
+        console.log(`Topping ${topping} Removed`)
+        dispatch(removeTopping({ pizzaIndex, topping: topping }));
+      };
 
 
     useEffect(() => {
@@ -324,15 +327,30 @@ export default function ToppingsV2({food}){
         <div className='bg-neutral-200 flex flex-col basis-1/3 pt-10'>
             <h1 className='text-2xl font-bold pl-10 pr-10 pb-5'>Order Selection</h1>
             {pizzaOrder && (
-                <p className="text-lg px-10 py-1">Crust: {pizzaOrder[0].crust}</p>
+                <div>
+                <p className="text-lg px-10 py-1 font-bold">Crust: </p>
+                <div className='bg-gray-100 px-5 py-2 my-2 ml-10 w-2/3 flex flex-row justify-between align-middle'>
+                    <p className='my-2'>{pizzaOrder[0].crust}</p>
+                  </div>
+              </div>
             )}
             {pizzaOrder && (
-                <p className="text-lg px-10 py-1">Sauce: {pizzaOrder[0].sauce}</p>
+              <div>
+                <p className="text-lg px-10 py-1 font-bold">Sauce: </p>
+                <div className='bg-gray-100 px-5 py-2 my-2 ml-10 w-2/3 flex flex-row justify-between align-middle'>
+                    <p className='my-2'>{pizzaOrder[0].sauce}</p>
+                  </div>
+              </div>
             )}
             {pizzaOrder && (
                 <div>
-                  <p className="text-lg px-10 py-1">Toppings: {pizzaOrder[0].toppings.toString()}</p>
-                  <div className='bg-grey-500'>{pizzaOrder[0].toppings.toString()}</div>
+                  <p className="text-lg px-10 py-1 font-bold">Toppings:</p>
+                  {pizzaOrder[0].toppings.map((t)=>(
+                  <div className='bg-gray-100 px-5 py-2 my-2 ml-10 w-2/3 flex flex-row justify-between align-middle'>
+                    <p className='my-2'>{t}</p>
+                    <button className='btn btn-warning' onClick={()=>handleRemoveTopping(0,t)}>Remove X</button>
+                  </div>
+                  ))}
                 </div>
                 
             )}
