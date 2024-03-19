@@ -1,7 +1,7 @@
-import { useState } from 'react'
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import './App.css'
-import Home from './components/home'
+import { useState } from 'react';
+import { HashRouter, Route, Routes } from 'react-router-dom';
+import './App.css';
+import Home from './components/home';
 import FoodOptions from './components/foodOptions';
 import NavBar from './components/NavBar';
 import Crust from './components/crust';
@@ -15,37 +15,33 @@ import FoodOptionsV2 from './components/foodOptionsv2';
 import CrustV2 from './components/crustv2';
 import SauceV2 from './components/saucev2';
 import ToppingsV2 from './components/toppingsv2';
+import AdditionalV2 from './components/additionalv2';
 import OrderCompleteV2 from './components/OrderCompletev2';
 import UserProfileV2 from './components/UserProfilev2';
-import AdditionalV2 from './components/additionalv2';
-
 
 export default function App() {
-
   return (
     <div>
-    <BrowserRouter>
-    <Routes>
-        <Route exact path="/swe632project" element={<Home />} />
-        <Route exact path="/start" element={<FoodOptions />} />
-        <Route exact path="/crust" element={<Crust />} />
-        <Route exact path="/sauce" element={<Sauce />} />
-        <Route exact path="/toppings" element={<Toppings />} />
-        <Route exact path="/additional" element={<Additional />} />
-        <Route exact path="/orderComplete" element={<OrderComplete />} />
-        <Route exact path="/userProfile" element={<UserProfile />} />
-        <Route exact path="/home" element={<HomeV2 />} />
-        <Route exact path="/startv2" element={<FoodOptionsV2 />} />
-        <Route exact path="/crustv2" element={<CrustV2 />} />
-        <Route exact path="/saucev2" element={<SauceV2 />} />
-        <Route exact path="/toppingsv2" element={<ToppingsV2 />} />
-        <Route exact path="/additional" element={<Additional />} />
-        <Route exact path="/additionalv2" element={<AdditionalV2 />} />
-        <Route exact path="/orderCompletev2" element={<OrderCompleteV2 />} />
-        <Route exact path="/userProfilev2" element={<UserProfileV2 />} />
-
-    </Routes>
-    </BrowserRouter>
+      <HashRouter>
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route path="/start" element={<FoodOptions />} />
+          <Route path="/crust" element={<Crust />} />
+          <Route path="/sauce" element={<Sauce />} />
+          <Route path="/toppings" element={<Toppings />} />
+          <Route path="/additional" element={<Additional />} />
+          <Route path="/orderComplete" element={<OrderComplete />} />
+          <Route path="/userProfile" element={<UserProfile />} />
+          <Route path="/homev2" element={<HomeV2 />} />
+          <Route path="/startv2" element={<FoodOptionsV2 />} />
+          <Route path="/crustv2" element={<CrustV2 />} />
+          <Route path="/saucev2" element={<SauceV2 />} />
+          <Route path="/toppingsv2" element={<ToppingsV2 />} />
+          <Route path="/additionalv2" element={<AdditionalV2 />} />
+          <Route path="/orderCompletev2" element={<OrderCompleteV2 />} />
+          <Route path="/userProfilev2" element={<UserProfileV2 />} />
+        </Routes>
+      </HashRouter>
     </div>
-  )
+  );
 }

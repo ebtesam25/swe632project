@@ -15,7 +15,7 @@ export default function Home(){
       <h1 className="text-5xl font-bold">QuickLunch v1</h1>
       <p className="py-6 text-lg">Welcome to QuickLunch! Dive into our world of fresh ingredients, endless combinations, and mouth-watering flavors. Whether you're craving a pizza, a hearty bowl, or a sandwich, we've got you covered with our build-your-own menu. Fast, fresh, and exactly how you want it - that's the QuickLunch promise!</p>
       <button className="btn btn-primary"><Link to="/start">Order Now</Link></button>
-      <button className="btn btn-primary"><Link to="/home">Access v2</Link></button>
+      <button className="btn btn-primary"><Link to="/homeV2">Access v2</Link></button>
     </div>
   </div>
 </div>
