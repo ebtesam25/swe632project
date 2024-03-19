@@ -34,6 +34,9 @@ export default function AdditionalV2({food}){
         setQuantity(prevQuantity => Math.max(prevQuantity - 1, 1)); // Prevents quantity from going below 1
     };
 
+    const [toppingsLength, setToppingsLength] = useState(0);
+
+
     const [recommendedPairings, setRecommendedPairings] = useState({
         "Marinara": ["Balsamic Glaze", "Garlic Parmesan Drizzle"],
         "Alfredo": ["Ranch Dressing Drizzle", "Garlic Parmesan Drizzle"],
@@ -132,11 +135,23 @@ export default function AdditionalV2({food}){
       };
 
     const handleAddDrizzle = (pizzaIndex, drizzle) => {
+      if (pizzaOrder[0].drizzles.length <= 3) {
         dispatch(addDrizzle({ pizzaIndex, drizzle: drizzle }));
+        setToppingsLength(pizzaOrder[0].drizzles.length);
+      }
+      else{
+        setToppingsLength(4);
+      }
     };
     const handleRemoveDrizzle = (pizzaIndex, drizzle) => {
+      if (pizzaOrder[0].drizzles.length == 4) {
+        setToppingsLength(pizzaOrder[0].drizzles.length - 1);
+      }
       dispatch(removeDrizzle({ pizzaIndex, drizzle: drizzle }));
     };
+
+    
+  
 
 
     useEffect(() => {
@@ -225,6 +240,7 @@ export default function AdditionalV2({food}){
                   ))}
               </div>
             )}
+            {toppingsLength == 4 && (<div className='bg-red-100 w-2/3 mx-10 border-red-300 border-2 my-10 py-5'><p className='mx-5'>You have reached max drizzle limit</p></div>)}
             {!isOrderComplete &&<div>
             <button onClick={()=>setIsOrderComplete(true)} className='btn btn-primary w-2/3 self-center mt-5 justify-center mx-10'>Place Order</button>
             </div>}

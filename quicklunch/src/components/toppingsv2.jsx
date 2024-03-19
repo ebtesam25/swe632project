@@ -43,6 +43,8 @@ export default function ToppingsV2({food}){
         setQuantity(prevQuantity => Math.max(prevQuantity - 1, 1)); // Prevents quantity from going below 1
     };
 
+    const [toppingsLength, setToppingsLength] = useState(0);
+
     const [recommendedPairings, setRecommendedPairings] = useState([
         {
         "Marinara":[
@@ -269,10 +271,19 @@ export default function ToppingsV2({food}){
       };
 
       const handleAddTopping = (pizzaIndex, topping) => {
+        if (pizzaOrder[0].toppings.length <= 3) {
         dispatch(addTopping({ pizzaIndex, topping: topping }));
+        setToppingsLength(pizzaOrder[0].toppings.length);
+        }
+        else{
+          setToppingsLength(4);
+        }
       };
       
       const handleRemoveTopping = (pizzaIndex, topping) => {
+        if (pizzaOrder[0].toppings.length == 4) {
+          setToppingsLength(pizzaOrder[0].toppings.length - 1);
+        }
         console.log(`Topping ${topping} Removed`)
         dispatch(removeTopping({ pizzaIndex, topping: topping }));
       };
@@ -354,6 +365,7 @@ export default function ToppingsV2({food}){
                 </div>
                 
             )}
+            {toppingsLength == 4 && (<div className='bg-red-100 w-2/3 mx-10 border-red-300 border-2 my-10 py-5'><p className='mx-5'>You have reached max topping limit</p></div>)}
             <button className='btn btn-primary w-1/3 self-center mt-5'><Link to="/additionalV2">Next</Link></button>
         </div>
         </div>
