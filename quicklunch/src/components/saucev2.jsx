@@ -20,6 +20,7 @@ import { Link } from 'react-router-dom';
     
 
 export default function SauceV2({food}){
+  const [selectPizza, setSelectPizza] = useState(0);
     const [sauceOps, setSauceOps] = useState([
         {
             "name": "Marinara",
@@ -113,7 +114,7 @@ export default function SauceV2({food}){
                 {item.keto?<div className="badge badge-outline">Keto</div>:null}
                 </div>
                 <p>{item.description}</p>
-                <button className="btn btn-primary" onClick={() => {handleNewPizza(0);handleSetSauce(0,item.name)}}>Select</button>
+                <button className="btn btn-primary" onClick={() => {handleSetSauce(selectPizza,item.name)}}>Select</button>
             </div>
             </div>))}
             </div>
@@ -121,11 +122,16 @@ export default function SauceV2({food}){
         </div>
         <div className='bg-neutral-200 flex flex-col basis-1/3 pt-10'>
             <h1 className='text-2xl font-bold pl-10 pr-10 pb-5'>Order Selection</h1>
+
+            <div role="tablist" className="tabs tabs-boxed mx-10">
+        {pizzaOrder.map((pizza, index)=><a onClick={()=>setSelectPizza(index)} role="tab" className={selectPizza == index ?"tab tab-active":"tab"}>Pizza {index}</a>)}
+        </div>
+
             {pizzaOrder && (
                 <div>
                 <p className="text-lg px-10 py-1 font-bold">Crust: </p>
                 <div className='bg-gray-100 px-5 py-2 my-2 ml-10 w-2/3 flex flex-row justify-between align-middle'>
-                    <p className='my-2'>{pizzaOrder[0].crust}</p>
+                    <p className='my-2'>{pizzaOrder[selectPizza].crust}</p>
                   </div>
               </div>
             )}
@@ -133,7 +139,7 @@ export default function SauceV2({food}){
               <div>
                 <p className="text-lg px-10 py-1 font-bold">Sauce: </p>
                 <div className='bg-gray-100 px-5 py-2 my-2 ml-10 w-2/3 flex flex-row justify-between align-middle'>
-                    <p className='my-2'>{pizzaOrder[0].sauce}</p>
+                    <p className='my-2'>{pizzaOrder[selectPizza].sauce}</p>
                   </div>
               </div>
             )}

@@ -12,6 +12,10 @@ export default function FoodOptionsV2(){
         {"name": "Pizza", "img": Pizza, "description": "Start with our hand-tossed dough, choose from our rich tomato sauce or creamy white sauce, and top it off with your choice of fresh toppings. From classic pepperoni to exotic artichokes, create a pizza that’s uniquely yours", "glutenFree": true, "keto": true, "new":true}, {"name": "Sandwich", "img": Sando, "description": "Select your bread - be it a crusty baguette or a soft brioche. Layer it with premium meats, fresh vegetables, and cheeses. Add a spread of your choice to elevate your sandwich experience. Perfect for a quick lunch that doesn’t compromise on flavor or freshness!", "glutenFree": true, "keto": false, "new":false}, {"name": "Bowl", "img": Bowl, "description": "Pick your base from options like brown rice, quinoa, or mixed greens. Add in protein powerhouses like grilled chicken or tofu, top with a variety of fresh veggies, and finish with a drizzle of our signature sauces. Healthy, hearty, and tailored to your taste!", "glutenFree": true, "keto": true, "new":false}
     ]);
 
+    const handleNewPizza = () => {
+        dispatch(addPizza());
+      };
+
     return(
         <div className="content-center p-10">
             <h1 className='font-bold text-xl mb-5'>Order</h1>

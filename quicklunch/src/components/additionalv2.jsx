@@ -23,6 +23,7 @@ import OrderComplete from './OrderComplete';
     
 
 export default function AdditionalV2({food}){
+  const [selectPizza, setSelectPizza] = useState(0);
     const [isOrderComplete, setIsOrderComplete] = useState(false);
     const [quantity, setQuantity] = useState(1); // Initializes quantity with 1
 
@@ -137,7 +138,7 @@ export default function AdditionalV2({food}){
     const handleAddDrizzle = (pizzaIndex, drizzle) => {
       if (pizzaOrder[0].drizzles.length <= 3) {
         dispatch(addDrizzle({ pizzaIndex, drizzle: drizzle }));
-        setToppingsLength(pizzaOrder[0].drizzles.length);
+        setToppingsLength(pizzaOrder[selectPizza].drizzles.length);
       }
       else{
         setToppingsLength(4);
@@ -145,7 +146,7 @@ export default function AdditionalV2({food}){
     };
     const handleRemoveDrizzle = (pizzaIndex, drizzle) => {
       if (pizzaOrder[0].drizzles.length == 4) {
-        setToppingsLength(pizzaOrder[0].drizzles.length - 1);
+        setToppingsLength(pizzaOrder[selectPizza].drizzles.length - 1);
       }
       dispatch(removeDrizzle({ pizzaIndex, drizzle: drizzle }));
     };
@@ -193,7 +194,7 @@ export default function AdditionalV2({food}){
                 <input className='input input-bordered w-full max-w-xs' type="number" value={quantity} readOnly />
                 <button className='btn btn-primary rounded-full text-2xl text-white' onClick={increaseQuantity}>+</button>
                 </div> */}
-                <button className={isOrderComplete?"btn disabled":"btn btn-primary"} onClick={() => handleAddDrizzle(0,item.name)}>Select</button>
+                <button className={isOrderComplete?"btn disabled":"btn btn-primary"} onClick={() => handleAddDrizzle(selectPizza,item.name)}>Select</button>
             </div>
             </div>))}
             </div>
@@ -203,11 +204,17 @@ export default function AdditionalV2({food}){
         <div className='bg-neutral-200 flex flex-col basis-1/3 pt-10 content-center'>
             
             <h1 className='text-2xl font-bold pl-10 pr-10 pb-10'>Order Selection</h1>
+
+            <div role="tablist" className="tabs tabs-boxed mx-10">
+            {pizzaOrder.map((pizza, index)=><a onClick={()=>setSelectPizza(index)} role="tab" className={selectPizza == index ?"tab tab-active":"tab"}>Pizza {index}</a>)}
+            </div>
+
+
             {pizzaOrder && (
                 <div>
                 <p className="text-lg px-10 py-1 font-bold">Crust: </p>
                 <div className='bg-gray-100 px-5 py-2 my-2 ml-10 w-2/3 flex flex-row justify-between align-middle'>
-                    <p className='my-2'>{pizzaOrder[0].crust}</p>
+                    <p className='my-2'>{pizzaOrder[selectPizza].crust}</p>
                   </div>
               </div>
             )}
@@ -215,14 +222,14 @@ export default function AdditionalV2({food}){
               <div>
                 <p className="text-lg px-10 py-1 font-bold">Sauce: </p>
                 <div className='bg-gray-100 px-5 py-2 my-2 ml-10 w-2/3 flex flex-row justify-between align-middle'>
-                    <p className='my-2'>{pizzaOrder[0].sauce}</p>
+                    <p className='my-2'>{pizzaOrder[selectPizza].sauce}</p>
                   </div>
               </div>
             )}
             {pizzaOrder && (
               <div>
                 <p className="text-lg px-10 py-1 font-bold">Toppings:</p>
-                {pizzaOrder[0].toppings.map((t)=>(
+                {pizzaOrder[selectPizza].toppings.map((t)=>(
                   <div className='bg-gray-100 px-5 py-2 my-2 ml-10 w-2/3 flex flex-row justify-between align-middle'>
                     <p className='my-2'>{t}</p>
                   </div>
@@ -232,16 +239,17 @@ export default function AdditionalV2({food}){
             {pizzaOrder && (
               <div>
                 <p className="text-lg px-10 pt-1 font-bold">Drizzle:</p>
-                {pizzaOrder[0].drizzles.map((t)=>(
+                {pizzaOrder[selectPizza].drizzles.map((t)=>(
                   <div className='bg-gray-100 px-5 py-2 my-2 ml-10 w-2/3 flex flex-row justify-between align-middle'>
                     <p className='my-2'>{t}</p>
-                    <button className='btn btn-warning' onClick={()=>handleRemoveDrizzle(0,t)}>Remove X</button>
+                    {!isOrderComplete &&<button className='btn btn-warning' onClick={()=>handleRemoveDrizzle(selectPizza,t)}>Remove X</button>}
                   </div>
                   ))}
               </div>
             )}
             {toppingsLength == 4 && (<div className='bg-red-100 w-2/3 mx-10 border-red-300 border-2 my-10 py-5'><p className='mx-5'>You have reached max drizzle limit</p></div>)}
             {!isOrderComplete &&<div>
+            <Link to="/crustV2"><button className='btn btn-secondary w-2/3 self-center mt-5 justify-center mx-10'>Add More Pizza</button></Link>
             <button onClick={()=>setIsOrderComplete(true)} className='btn btn-primary w-2/3 self-center mt-5 justify-center mx-10'>Place Order</button>
             </div>}
               {isOrderComplete && <OrderComplete/>}

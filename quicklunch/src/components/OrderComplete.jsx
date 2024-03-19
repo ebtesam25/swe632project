@@ -3,15 +3,18 @@ import {
   addUser,
 } from '../redux/userSlice';
 export default function OrderComplete() {
-  const order = {
-    id: 1001,
-    items: [
-      { name: 'Pizza', quantity: 1, price: 12.99 },
-    ],
-    total: 12.99,
-  };
+  
   const dispatch = useDispatch();
-    const userSelector = useSelector(state => state.user.users);
+  const userSelector = useSelector(state => state.user.users);
+    const pizzaOrder = useSelector(state => state.order.pizzas);
+
+    const order = {
+      id: 1001,
+      items: [
+        { name: 'Pizza', quantity: pizzaOrder.length, price: 12.99},
+      ],
+      total: 12.99 * pizzaOrder.length,
+    };
 
   return (
     <div className="px-10">

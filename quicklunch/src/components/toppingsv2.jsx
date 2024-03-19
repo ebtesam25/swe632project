@@ -33,6 +33,7 @@ import { Link } from 'react-router-dom';
     
 
 export default function ToppingsV2({food}){
+  const [selectPizza, setSelectPizza] = useState(0);
     const [quantity, setQuantity] = useState(1); // Initializes quantity with 1
 
     const increaseQuantity = () => {
@@ -234,7 +235,7 @@ export default function ToppingsV2({food}){
         let updatedOrdr = []
       
           //Select recommended pairings for current sauce and find the topping in toppingOps
-            let currentSauce = pizzaOrder[0].sauce;
+            let currentSauce = pizzaOrder[selectPizza].sauce;
             let rtoppings = recommendedPairings.filter(pairing => pairing[currentSauce]);
             for (let j = 0; j < 4; j++) {
                 let select_topping = toppingOps.find(topping => topping.name === rtoppings[0][currentSauce][j]);
@@ -271,9 +272,9 @@ export default function ToppingsV2({food}){
       };
 
       const handleAddTopping = (pizzaIndex, topping) => {
-        if (pizzaOrder[0].toppings.length <= 3) {
+        if (pizzaOrder[selectPizza].toppings.length <= 3) {
         dispatch(addTopping({ pizzaIndex, topping: topping }));
-        setToppingsLength(pizzaOrder[0].toppings.length);
+        setToppingsLength(pizzaOrder[selectPizza].toppings.length);
         }
         else{
           setToppingsLength(4);
@@ -281,8 +282,8 @@ export default function ToppingsV2({food}){
       };
       
       const handleRemoveTopping = (pizzaIndex, topping) => {
-        if (pizzaOrder[0].toppings.length == 4) {
-          setToppingsLength(pizzaOrder[0].toppings.length - 1);
+        if (pizzaOrder[selectPizza].toppings.length == 4) {
+          setToppingsLength(pizzaOrder[selectPizza].toppings.length - 1);
         }
         console.log(`Topping ${topping} Removed`)
         dispatch(removeTopping({ pizzaIndex, topping: topping }));
@@ -328,7 +329,7 @@ export default function ToppingsV2({food}){
                 <input className='input input-bordered w-full max-w-xs' type="number" value={quantity} readOnly />
                 <button className='btn btn-primary rounded-full text-2xl text-white' onClick={increaseQuantity}>+</button>
                 </div> */}
-                <button className="btn btn-primary" onClick={() => {handleNewPizza(0);handleAddTopping(0,item.name)}}>Select</button>
+                <button className="btn btn-primary" onClick={() => {handleAddTopping(selectPizza,item.name)}}>Select</button>
             </div>
             </div>))}
             </div>
@@ -337,11 +338,16 @@ export default function ToppingsV2({food}){
         </div>
         <div className='bg-neutral-200 flex flex-col basis-1/3 pt-10'>
             <h1 className='text-2xl font-bold pl-10 pr-10 pb-5'>Order Selection</h1>
+
+            <div role="tablist" className="tabs tabs-boxed mx-10">
+        {pizzaOrder.map((pizza, index)=><a onClick={()=>setSelectPizza(index)} role="tab" className={selectPizza == index ?"tab tab-active":"tab"}>Pizza {index}</a>)}
+        </div>
+
             {pizzaOrder && (
                 <div>
                 <p className="text-lg px-10 py-1 font-bold">Crust: </p>
                 <div className='bg-gray-100 px-5 py-2 my-2 ml-10 w-2/3 flex flex-row justify-between align-middle'>
-                    <p className='my-2'>{pizzaOrder[0].crust}</p>
+                    <p className='my-2'>{pizzaOrder[selectPizza].crust}</p>
                   </div>
               </div>
             )}
@@ -349,17 +355,17 @@ export default function ToppingsV2({food}){
               <div>
                 <p className="text-lg px-10 py-1 font-bold">Sauce: </p>
                 <div className='bg-gray-100 px-5 py-2 my-2 ml-10 w-2/3 flex flex-row justify-between align-middle'>
-                    <p className='my-2'>{pizzaOrder[0].sauce}</p>
+                    <p className='my-2'>{pizzaOrder[selectPizza].sauce}</p>
                   </div>
               </div>
             )}
             {pizzaOrder && (
                 <div>
                   <p className="text-lg px-10 py-1 font-bold">Toppings:</p>
-                  {pizzaOrder[0].toppings.map((t)=>(
+                  {pizzaOrder[selectPizza].toppings.map((t)=>(
                   <div className='bg-gray-100 px-5 py-2 my-2 ml-10 w-2/3 flex flex-row justify-between align-middle'>
                     <p className='my-2'>{t}</p>
-                    <button className='btn btn-warning' onClick={()=>handleRemoveTopping(0,t)}>Remove X</button>
+                    <button className='btn btn-warning' onClick={()=>handleRemoveTopping(selectPizza,t)}>Remove X</button>
                   </div>
                   ))}
                 </div>

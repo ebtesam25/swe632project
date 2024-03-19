@@ -15,6 +15,7 @@ export const orderSlice = createSlice({
         crust: '',
         sauce: '',
         toppings: [], // Each topping will have a name and quantity
+        drizzles: [], // Each drizzle will have a name and quantity
       });
     },
     setCrust: (state, action) => {
