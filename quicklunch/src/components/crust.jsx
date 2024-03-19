@@ -57,7 +57,7 @@ export default function Crust(){
             <li className="step">Additional</li>
             </ul>
             <h1 className='font-bold text-xl mb-5'>Crust</h1>
-           <p className='text-xl mb-10'>Choose your crust. We offer a variety of options to suit your dietary needs and preferences. <span className='font-bold'>You may only select one.</span></p>
+           <p className='text-xl mb-10'>Choose your crust. We offer a variety of options to suit your dietary needs and preferences.</p>
            <div className='grid grid-rows-2 grid-flow-col gap-4'>
            {foodOps.map(item => (
             <div className={`card h-[32rem] bg-base-100 shadow-xl h-96 ${selectedFood === item ? 'selected' : ''}`}>
